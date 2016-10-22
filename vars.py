@@ -24,10 +24,11 @@ save_pkl(df_hosnames,'d:/git/getrec2/','df_hosnames.pkl')
 hoscodes15=[int(code) for code in hoscode]
 hosdic=dict(zip(hosnames.code,hosnames.names))
 hosnames15=[hosdic[key] for key in hosdic
-           if key in hoscode]
+           if key in hoscodes15]
 hoscodes15=[key for key in hosdic 
-             if key in hoscode]
+             if key in hoscodes15]
 hos15=pd.Series(hosnames15,hoscodes15)
-save_pkl('d:/git/getrec2','hos15.okl')
+
+save_pkl(hos15,'d:/git/getrec2/','hos15.pkl')
 
 
