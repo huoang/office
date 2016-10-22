@@ -17,14 +17,14 @@ def getrec(strpath):
     f.close()
     return(hoscode)
 
-hoscode1501=getrec('f:/data/1501/301.csv')
-hoscode1502=getrec('f:/data/1502/302.csv')
-hoscode1503=getrec('f:/data/1503/303.csv')
-hoscode1504=getrec('f:/data/1504/304.csv')
+hoscode1501=getrec('e:/data/2015/1501.csv')
+hoscode1502=getrec('e:/data/2015/1502.csv')
+hoscode1503=getrec('e:/data/2015/1503.csv')
+hoscode1504=getrec('e:/data/2015/1504.csv')
 hoscode=hoscode1501+hoscode1502+hoscode1503+hoscode1504
 hoscode=np.array(hoscode) 
 hoscode=set(hoscode)
-save_pkl(hoscode,'e:/ipy/getrec/', 'hoscode.pkl')
+save_pkl(hoscode,'d:/git/getrec2/', 'hoscode.pkl')
 
 
 
