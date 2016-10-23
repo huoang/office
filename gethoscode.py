@@ -12,7 +12,8 @@ from cio import save_pkl
 def getrec(strpath):
     f=codecs.open(strpath,encoding='utf-8')
     full=f.readlines()
-    hoscode=map((lambda x:re.findall("41\\d{10}",x[45:75])),full)
+    hoscode=map((lambda x:re.findall("41\\d{10}",
+                    x[45:75])),full)
     hoscode=flatten(hoscode)
     f.close()
     return(hoscode)
