@@ -3,4 +3,6 @@ encoding/<project>=UTF-8
 encoding/cio.py=utf-8
 encoding/gethoscode.py=utf-8
 encoding/getrecs.py=utf-8
+encoding/global_list.py=utf-8
+encoding/main.py=utf-8
 encoding/vars.py=utf-8
