@@ -6,7 +6,7 @@ import numpy as np
 import re
 import codecs
 from compiler.ast import flatten
-#import pickle
+import pickle
 from cio import save_pkl 
 
 def getrec(strpath):
@@ -18,14 +18,14 @@ def getrec(strpath):
     f.close()
     return(hoscode)
 
-hoscode1501=getrec('e:/data/2015/1501.csv')
-hoscode1502=getrec('e:/data/2015/1502.csv')
-hoscode1503=getrec('e:/data/2015/1503.csv')
-hoscode1504=getrec('e:/data/2015/1504.csv')
+hoscode1501=getrec('f:/data/2015/1501.csv')
+hoscode1502=getrec('f:/data/2015/1502.csv')
+hoscode1503=getrec('f:/data/2015/1503.csv')
+hoscode1504=getrec('f:/data/2015/1504.csv')
 hoscode=hoscode1501+hoscode1502+hoscode1503+hoscode1504
 hoscode=np.array(hoscode) 
 hoscode=set(hoscode)
-save_pkl(hoscode,'d:/git/getrec2/', 'hoscode.pkl')
+save_pkl(hoscode,'f:/eps/getrec2/', 'hoscode.pkl')
 
 
 
