@@ -32,20 +32,19 @@ def getfullrecs(strpath):
             pass
         else:
             ix_s1_exclude_header.append(line)
-
-    #ix_s1_tuple=[tuple(line) for line in ix_s1_exclude_header]
-    hoscode=load_pkl('d:/git/getrec2/', 'hoscode.pkl')
+    hoscode=load_pkl('e:/ipy/getrec/', 'hoscode.pkl')
     hos_code=[(line,) for line in hoscode]
-    hosdic=load_pkl('d:/git/getrec2/','hos15.pkl')
+    hosdic=load_pkl('e:/ipy/getrec/','hos15.pkl')
     hosdicix=hosdic.index
     hosdicix=tuple(hosdicix)
     hosdicix=[str(line) for line in hosdicix]
     hosdicix=[(line,) for line in hosdicix]
     hosdic.index=hosdicix
+    save_pkl(hosdic,'e:/ipy/getrec/','hos15_dic.pkl')
     for line in hos_code:
         try:
             hos=Ser1501[line]
-            hos.to_csv('d:/git/procdata/hos15/'+
+            hos.to_csv('e:/ipy/procdata/hos15/'+
             hosdic[line]+'_s'+strpath[13:17]+
             '.csv',encoding='utf-8')
         except:

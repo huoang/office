@@ -8,30 +8,18 @@ import pandas as pd
 from pandas.core.frame import DataFrame
 
 
-hoscode=load_pkl("f:/eps/getrec2/","hoscode.pkl")
+hoscode=load_pkl("e:/ipy/getrec/","hoscode.pkl")
 print len(hoscode)
-
-
-hosnames = pd.read_csv(r'f:/eps/getrec2/hosnames.CSV',
+hosnames = pd.read_csv(r'e:/ipy/getrec/hosnames.csv',
                          encoding="gbk")
-'''
-df_hosnames=DataFrame(hosnames)
-
-print type(df_hosnames)
-
-df_hosnames.columns='code','names'
-print df_hosnames 
-''' 
-save_pkl(hosnames,'f:/eps/getrec2/','df_hosnames.pkl')
-
+hosnames.columns='code','names'
 hoscodes15=[int(code) for code in hoscode]
-hosdic=dict(zip(hosnames.code,hosnames.name))
+hosdic=dict(zip(hosnames.code,hosnames.names))
 hosnames15=[hosdic[key] for key in hosdic
            if key in hoscodes15]
 hoscodes15=[key for key in hosdic 
              if key in hoscodes15]
 hos15=pd.Series(hosnames15,hoscodes15)
-
-save_pkl(hos15,'f:/eps/getrec2/','hos15.pkl')
+save_pkl(hos15,'e:/ipy/getrec/','hos15.pkl')
 
 

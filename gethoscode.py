@@ -25,7 +25,7 @@ hoscode1504=getrec('f:/data/2015/1504.csv')
 hoscode=hoscode1501+hoscode1502+hoscode1503+hoscode1504
 hoscode=np.array(hoscode) 
 hoscode=set(hoscode)
-save_pkl(hoscode,'f:/eps/getrec2/', 'hoscode.pkl')
+save_pkl(hoscode,'e:/ipy/getrec/', 'hoscode.pkl')
 
 
 
