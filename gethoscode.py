@@ -8,6 +8,8 @@ import codecs
 from compiler.ast import flatten
 import pickle
 from cio import save_pkl 
+from global_list import list_path
+
 
 def getrec(strpath):
     f=codecs.open(strpath,encoding='utf-8')
@@ -17,15 +19,15 @@ def getrec(strpath):
     hoscode=flatten(hoscode)
     f.close()
     return(hoscode)
-
-hoscode1501=getrec('f:/data/2015/1501.csv')
-hoscode1502=getrec('f:/data/2015/1502.csv')
-hoscode1503=getrec('f:/data/2015/1503.csv')
-hoscode1504=getrec('f:/data/2015/1504.csv')
-hoscode=hoscode1501+hoscode1502+hoscode1503+hoscode1504
-hoscode=np.array(hoscode) 
-hoscode=set(hoscode)
-save_pkl(hoscode,'e:/ipy/getrec/', 'hoscode.pkl')
+def getcode(listpath):    
+    hoscode_full=[]
+    for path in listpath:
+        hoscode=getrec(path)
+        hoscode=list(hoscode)
+        hoscode_full+=hoscode 
+    hoscode_full=set(hoscode_full)
+    hoscode_full=list(hoscode_full)
+    save_pkl(hoscode_full,'e:/ipy/getrec/','hoscode.pkl')
 
 
 
