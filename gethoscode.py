@@ -2,32 +2,47 @@
 #encoding:utf-8
 
 
-import numpy as np
+
 import re
 import codecs
 from compiler.ast import flatten
-import pickle
 from cio import save_pkl 
 from global_list import list_path
 
+def getyear(strpath):
+    year=strpath[0][13:15]
+    return year
 
-def getrec(strpath):
+def gethoscode(strpath):
+    year=getyear(strpath)
+    if year=='14':
+        start=1
+        end=30
+    elif year=='15' or '13':
+        start=45
+        end=75
+    else:
+        print u'请确定年份是否正确！'
     f=codecs.open(strpath,encoding='utf-8')
     full=f.readlines()
     hoscode=map((lambda x:re.findall("41\\d{10}",
-                    x[45:75])),full)
+                    x[start:end])),full)
     hoscode=flatten(hoscode)
     f.close()
     return(hoscode)
-def getcode(listpath):    
-    hoscode_full=[]
+def savecode(listpath):    
+    year=getyear(listpath)
+    hoscode_year=[]
     for path in listpath:
         hoscode=getrec(path)
         hoscode=list(hoscode)
-        hoscode_full+=hoscode 
-    hoscode_full=set(hoscode_full)
-    hoscode_full=list(hoscode_full)
-    save_pkl(hoscode_full,'e:/ipy/getrec/','hoscode.pkl')
+        hoscode_year+=hoscode 
+    hoscode_year=set(hoscode_year)
+    hoscode_year=list(hoscode_year)
+    save_pkl(hoscode_year,'e:/ipy/getrec/',
+             'hoscode'+year+'.pkl')
+
+
 
 
 

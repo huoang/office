@@ -25,7 +25,7 @@ def getdf(list_files):
             names=['cont'],encoding='utf-8')
         lst_hos=list(hos.cont)
         lst_hos=[line.encode('utf-8') for line in lst_hos] 
-        lst_hos=[re.sub('".+?"',rep_str,line) for line
+        lst_hos=[re.sub('\"+.+?\"+',rep_str,line) for line
                   in lst_hos]
         str_hos=[line.split(',') for line in lst_hos]
         df_hos=pd.DataFrame(str_hos)
@@ -94,12 +94,22 @@ lst_hos=[re.sub('".+?"',rep_str,line)
             for line in lst_hos]
 
 zd2=pd.read_csv(u'e:/ipy/procdata/rec15/'+
-            r'郑州大学第二附属医院_y15.csv',
+            u'安阳市滑县人民医院_y15.csv',
             header=None,names=['cont'],
             encoding='utf-8')
 lst_zd2=list(zd2.cont)
 lst_zd2=[line.encode('utf-8') for line in lst_zd2] 
-lst_zd2=[re.sub('".+?"|"".+?""',rep_str,line) for 
+lst_zd2=[re.sub('\"+.+?\"+',rep_str,line) for 
     line in lst_zd2]
-print lst_zd2[39707]
+str_zd2=[line.split(',') for line in lst_zd2]
+        df_zd2=pd.DataFrame(str_zd2)
+vars=dfvars(df_zd2)
+df_zd2.columns=[vars.split(',')]
+
+df_zd2.to_csv(u'e:/ipy/procdata/'+
+            'hx.csv',index=False,
+            encoding='utf-8')
+print lst_zd2[7991]
+
+len(lst_zd2)
 '''
