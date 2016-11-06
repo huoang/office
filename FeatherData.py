@@ -2,21 +2,30 @@
 #coding:utf-8
 
 import pandas as pd
-import os
-from cio import load_pkl,save_pkl
-import feather
+import feather as fd
 
-def dfvars(a_df):
+def dfvars(ncol):
     dfvars=''
-    for var in range(1,len(a_df.columns)+1):
+    for var in range(1,ncol+1):
         dfvars+='x%d,' %var
     dfvars=dfvars[:len(dfvars)-1]
     return dfvars
-vars=dfvars(df)
+vars=dfvars(261)
+
+def selvars(selvars):
+    dfvars=''
+    for var in selvars:
+        dfvars+='x%d,' %var
+    dfvars=dfvars[:len(dfvars)-1]
+    return dfvars
+selvar=[1,5,2,31]+range(229,259)
+selvars=selvars(selvar)
+
+###x1,x5,x2,x31,x33:x258
 
 
 
-reader = pd.read_csv('f:/data/2013/1301.csv',
+reader = pd.read_csv('/mnt/e/data/2013/1301.csv',
                      iterator=True)
 reader._currow = 0
 
@@ -24,30 +33,24 @@ loop = True
 chunkSize = 50000
 hoscodes = []
 looptimes=0
+#df_rep=pd.DataFrame()
+path='/mnt/e/ipy/procdata/2013/rec2013.pyr'
 while loop:
     try:
+        looptimes+=1
         df =reader.get_chunk(chunkSize)
         df.columns=vars.split(',')
-        #hoscodes+=[df.icol(4).values]
-        looptimes+=1
-        hosix=df.icol(4).values
-        hosix=set(hosix)
-        hosix=[code for code in hosix]
-        for code in hosix:
-            df_rep=df.ix[df.x5==code,:]    
-            df_rep.to_csv('e:/ipy/procdata/temp1/'
-                +str(code)+'_lp'+str(looptimes)+'.csv',
-                index=None,encoding='utf-8')
+        df_rep=df.ix[:,selvars.split(",")] 
+        df_rep=df_rep.astype('str')
+        fd.write_dataframe(df_rep,path+str(looptimes))   
     except StopIteration:
         loop =False
         print"Iteration is stopped."
         
         
-df.to_csv('e:/ipy/procdata/'+'sample.csv',index=None)        
+      
 
-path='e:/ipy/procdata/'+'sample.pyr'
-fd.write_dataframe(df,path) 
-df = feather.read_dataframe(path)
+
 
         
         
