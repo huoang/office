@@ -1,0 +1,50 @@
+-- VERSION_4
+-- START DISKCACHE_2
+E:\pyr\getrec2\.metadata\.plugins\org.eclipse.core.resources\.projects\getrec\com.python.pydev.analysis\v2_indexcache
+GetDataFrame|1478568557483639000|E:\pyr\pycode\office\GetDataFrame.py
+cio|1478568557468638000|E:\pyr\pycode\office\cio.py
+gethoscode|1478568557474638000|E:\pyr\pycode\office\gethoscode.py
+getrecs|1478568557465638000|E:\pyr\pycode\office\getrecs.py
+main|1478568557478639000|E:\pyr\pycode\office\main.py
+vars|1478568557471638000|E:\pyr\pycode\office\vars.py
+ComebineRecs|1478568557477639000|E:\pyr\pycode\office\ComebineRecs.py
+FeatherData|1478568557470638000|E:\pyr\pycode\office\FeatherData.py
+global_list|1478568557473638000|E:\pyr\pycode\office\global_list.py
+splitcsvfile|1478568557480639000|E:\pyr\pycode\office\splitcsvfile.py
+-- END DISKCACHE
+-- START DICTIONARY
+9
+9=GetDataFrame
+7=cio
+3=getrecs
+4=gethoscode
+5=vars
+2=FeatherData
+6=ComebineRecs
+1=splitcsvfile
+8=global_list
+-- END DICTIONARY
+-- START TREE 1
+18
+chu|2|chunkSize!11@chunkSize!19@
+cod|1|codes!11@
+df|2|df!19@df!11@
+df_|2|df_rep!11@df_rep!19@
+dfv|2|dfvars!10@dfvars!18@
+fil|1|files!11@
+get|2|getfullrecs!26@getrec!34@
+hos|20|hoscode1501!35@hos_rep!11@hosix!11@hoscode1504!35@hoscode!43@hoscodes15!43@hosdic!43@hoscode!35@hoscode1503!35@hos!11@hos15!43@hosdic15!51@hos_code!51@hoscsv!51@hosnames15!43@hoscode1502!35@hoscodes!11@hoscode!51@hoscodes!19@hosnames!43@
+loa|1|load_pkl!58@
+loo|4|loop!11@loop!19@looptimes!11@looptimes!19@
+lpc|1|lpcontrol!51@
+pat|1|path!19@
+rea|2|reader!19@reader!11@
+sav|1|save_pkl!58@
+sel|3|selvar!19@selvars!18@selvars!19@
+str|5|strpath1501!67@str_zd2!75@strpath1503!67@strpath1502!67@strpath1504!67@
+var|2|vars!11@vars!19@
+zd2|1|zd2!75@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

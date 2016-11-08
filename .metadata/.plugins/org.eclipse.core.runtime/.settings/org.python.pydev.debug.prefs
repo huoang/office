@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+pydevconsole_background_color=64,0,64
+pydevconsole_sysin_color=0,255,64
+pydevconsole_sysout_color=128,255,128
+pydevdebugconsole_background_color=64,0,64
