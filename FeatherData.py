@@ -18,7 +18,7 @@ class CsvData:
         self.season = season
         self.path = path
         self.ncol = int(ncol)
-        self.selvar = [1,5,2,31,33,34,35,59,
+        self.selvar = [1,3,5,2,31,33,34,35,59,
             64,69,70,71,72]+range(229,259)
         #self.writepath = '/mnt/e/pyr/data/2015/'
         self.ixcol = ixcol
@@ -91,6 +91,7 @@ class CsvData:
         for var in single_var:
             cols=[filename for filename in 
                   cfiles if var in filename]
+            cols.sort()
             ccol = pd.DataFrame() 
             for col in cols:
                 col_rep = fd.read_dataframe(writepath+col)
@@ -100,9 +101,9 @@ class CsvData:
      
         
 if __name__ == '__main__':
-  
-    writepath = '/mnt/e/pyr/data/2015/'
     '''
+    writepath = '/mnt/e/pyr/data/2015/'
+    
     data1501 = CsvData('2015','01',
                 '/mnt/f/data/2015/1501.CSV',
                 261,'x5')    
@@ -127,13 +128,51 @@ if __name__ == '__main__':
                 261,'x5')    
     
     data1504.writedf(50000,writepath)
-    '''
+    
     selvar = [1,2,31,33,34,35,59,
             64,69,70,71,72]+range(229,259)
     CsvData.combinecol(selvar,'/mnt/e/pyr/data/2015x/')
     
+    print 'mission accomplished!!!'
+    '''
+    writepath = '/mnt/e/pyr/data/2014/'
+    
+    data1401 = CsvData('2014','01',
+                '/mnt/f/data/2014/1401.csv',
+                239,'x3')    
+    
+    data1401.writedf(50000,writepath)
+  
+    data1402 = CsvData('2014','02',
+                '/mnt/f/data/2014/1402.csv',
+                239,'x3')    
+    
+    data1402.writedf(50000,writepath)
+    
+    
+    data1403 = CsvData('2014','03',
+                '/mnt/f/data/2014/1403.csv',
+                239,'x3')    
+    
+    data1403.writedf(50000,writepath)
+     
+    data1404 = CsvData('2014','04',
+                '/mnt/f/data/2014/1404.csv',
+                239,'x3')    
+    
+    data1404.writedf(50000,writepath)
+    
+    selvar = [1,2,12,14,15,16,40,
+            45,50,51,52,53]+range(210,240)
+    CsvData.combinecol(selvar,'/mnt/e/pyr/data/2014x/')
+    
+    print 'mission accomplished!!!' 
+     
+     
      
 '''
+s_selvars(selvar)
+df['x239']
 def dfvars(ncol):
         dfvars=''
         for var in range(1,ncol+1):
@@ -217,6 +256,13 @@ def writecols(self):
         df[df.columns[0]]
 
     print var 
+reader = pd.read_csv('/mnt/f/data/2014/1403.csv',
+                     iterator = True)
+df = reader.get_chunk(100)
+
+vars = dfvars(239)
+df.columns = vars.split(',')
+
 
 
 '''        
