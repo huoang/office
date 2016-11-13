@@ -96,6 +96,7 @@ class CsvData:
         for var in single_var:
             cols=[filename for filename in 
                   cfiles if var in filename]
+            cols.sort()
             ccol = pd.DataFrame() 
             for col in cols:
                 col_rep = fd.read_dataframe(writepath+col)
@@ -136,4 +137,17 @@ if __name__ == '__main__':
     selvar = [1,2,31,33,34,35,59,
             64,69,70,71,72]+range(229,259)
     CsvData.combinecol(selvar,'/mnt/e/pyr/data/2015x/')
-
+    print 'mission completed'
+    
+'''
+    selvars = s_selvars(selvar).split(',')
+    single_var=['_'+var+'.' for var in 
+                   selvars[:258]]
+    cfiles = os.listdir(writepath)
+    cols=[filename for filename in 
+                  cfiles if '_x33.' in filename]
+    
+    cols.sort()
+    
+    help(cols.sort)
+'''
