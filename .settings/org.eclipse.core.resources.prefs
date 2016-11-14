@@ -6,6 +6,7 @@ encoding/GetDataFrame.py=utf-8
 encoding/cio.py=utf-8
 encoding/debug.py=utf-8
 encoding/featherdata.py=utf-8
+encoding/get_fd_per_hos.py=utf-8
 encoding/gethoscode.py=utf-8
 encoding/getrecs.py=utf-8
 encoding/global_list.py=utf-8

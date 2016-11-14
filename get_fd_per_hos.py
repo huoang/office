@@ -13,56 +13,13 @@ class CsvData:
     
     
     def __init__(self,year,season,
-                 path,ncol,ixcol,selvar_year,
-                 drop_vars,fee_vars,vericol):
+                 path,ncol,ixcol):
         self.year = year
         self.season = season
         self.path = path
         self.ncol = int(ncol)
         self.ixcol = ixcol
-        self.selvar_year = selvar_year
-        self.drop_vars = drop_vars
-        self.fee_vars = fee_vars
-        self.vericol = vericol
-    def dfvars(self):
-        dfvars=''
-        for var in range(1,self.ncol+1):
-            dfvars+='x%d,' %var
-        dfvars=dfvars[:len(dfvars)-1]
-        return dfvars
-    
-    @staticmethod
-    def s_dfvars(ncol):
-        dfvars=''
-        for var in range(1,ncol+1):
-            dfvars+='x%d,' %var
-        dfvars=dfvars[:len(dfvars)-1]
-        return dfvars
-    
-    
-    def selvars(self):
-        dfvars=''
-        for var in self.selvar_year:
-            dfvars+='x%d,' %var
-        dfvars=dfvars[:len(dfvars)-1]
-        return dfvars
-    
-    def feevars(self):
-        feevars=''
-        for var in self.fee_vars:
-            feevars+='x%d,' %var
-        feevars=feevars[:len(feevars)-1]
-        return feevars
-   
-    @staticmethod   
-    def s_selvars(selvar):
-        dfvars=''
-        for var in selvar:
-            dfvars+='x%d,' %var
-        dfvars=dfvars[:len(dfvars)-1]
-        return dfvars    
-    
-    
+        
     def writedf(self,chunkSize,write_path):
         loop = True
         looptimes=0
@@ -73,29 +30,16 @@ class CsvData:
                 looptimes += 1
                 df = reader.get_chunk(chunkSize)
                 df.columns = self.dfvars().split(',')
-                df[self.vericol] = True
-                df_fee = df.ix[:,self.feevars().split(",")]
-                df_fee_t = df_fee.T
-                df_fee_t.fillna(0,inplace = True)
-                df_ttl_sum = df_fee_t.iloc[0,:]
-                df_fee_cato = df_fee_t.drop(
-                            self.drop_vars.split(',')
-                            ,axis = 0)
-                df_cato_sum = df_fee_cato.sum()
-                df[self.vericol] = abs(df_ttl_sum - 
-                                 df_cato_sum) > 0.1
-                df_rep = df.ix[:,
-                    self.selvars().split(",")] 
-                df_rep = df_rep.astype('str')
-                for var in df_rep.columns:
-                    try:
-                        df_cols = df_rep[[self.ixcol,var]]
-                        df_cols = pd.DataFrame(df_cols)
-                        fd.write_dataframe(df_cols,
-                        writepath+self.year+'_'+
-                             self.season+'_'+var+'.pyr'+
-                             str(looptimes))
-                    except ValueError:
+                try:
+                    ixcode = df[[self.ixcol]]
+                    ixcode.count_values
+                    df_rep = df[[self.ixcol,var]]
+                    df_cols = pd.DataFrame(df_cols)
+                    fd.write_dataframe(df_cols,
+                    writepath+self.year+'_'+
+                    self.season+'_'+var+'.pyr'+
+                    str(looptimes))
+                except ValueError:
                         continue   
             except StopIteration:
                 loop =False
@@ -226,9 +170,21 @@ if __name__ == '__main__':
                        '/mnt/e/pyr/data/2013x/')
     print 'mission accomplished!!!' 
     '''
-  
+    reader = pd.read_csv('/mnt/f/data/2015/1502.CSV',
+                             iterator = True)
+    chunkSize = 50000
+    
+    df = reader.get_chunk(chunkSize)
+    df.columns = s_dfvars(261).split(',')
+    
+    ixcol = 'x5'
+    ixcode = df[[ixcol]]
+    ixcode = ixcode.ix[:,ixcol]
+    ixcode.value_counts()
+    type(ixcode)
 
-
-
+    import shelve
+    
+    f = shelve.open('/mnt/f/data/2015/1502.CSV')
         
         
