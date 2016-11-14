@@ -129,7 +129,11 @@ if __name__ == '__main__':
     fee_vars = range(229,259)
     drop_vars = 'x229,x230,x240,x242,x243,x247'
     data1501 = CsvData('2015','01',
+<<<<<<< HEAD
                        '/mnt/f/data/2015/1501.CSV',
+=======
+                       '/mnt/e/data/2015/1501.CSV',
+>>>>>>> 8522c97044a521a38196db2eaea7436e2e984d21
                        261,'x5',init_selvar_15,
                        drop_vars,fee_vars,
                        'x262')    
@@ -137,7 +141,11 @@ if __name__ == '__main__':
     data1501.writedf(50000,writepath)
   
     data1502 = CsvData('2015','02',
+<<<<<<< HEAD
                        '/mnt/f/data/2015/1502.CSV',
+=======
+                       '/mnt/e/data/2015/1502.CSV',
+>>>>>>> 8522c97044a521a38196db2eaea7436e2e984d21
                        261,'x5',init_selvar_15,
                        drop_vars,fee_vars,
                        'x262')    
@@ -146,7 +154,11 @@ if __name__ == '__main__':
     
     
     data1503 = CsvData('2015','03',
+<<<<<<< HEAD
                        '/mnt/f/data/2015/1503.CSV',
+=======
+                       '/mnt/e/data/2015/1503.CSV',
+>>>>>>> 8522c97044a521a38196db2eaea7436e2e984d21
                        261,'x5',init_selvar_15,
                        drop_vars,fee_vars,
                        'x262')    
@@ -154,7 +166,11 @@ if __name__ == '__main__':
     data1503.writedf(50000,writepath)
      
     data1504 = CsvData('2015','04',
+<<<<<<< HEAD
                        '/mnt/f/data/2015/1504.CSV',
+=======
+                       '/mnt/e/data/2015/1504.CSV',
+>>>>>>> 8522c97044a521a38196db2eaea7436e2e984d21
                        261,'x5',init_selvar_15,
                        drop_vars,fee_vars,
                        'x262')    
@@ -226,9 +242,60 @@ if __name__ == '__main__':
                        '/mnt/e/pyr/data/2013x/')
     print 'mission accomplished!!!' 
     '''
+<<<<<<< HEAD
   
+=======
+    '''
+########################splitting#########################
+def dfvars(ncol):
+        dfvars=''
+        for var in range(1,ncol+1):
+            dfvars+='x%d,' %var
+        dfvars=dfvars[:len(dfvars)-1]
+        return dfvars
+def s_selvars(selvar):
+        dfvars=''
+        for var in selvar:
+            dfvars+='x%d,' %var
+        dfvars=dfvars[:len(dfvars)-1]
+        return dfvars    
+chunsize = 50000
+path = '/mnt/e/data/2015/1501.CSV'
+fee_var = s_selvars(range(229,259))
+drop_vars = ['x229','x230','x240',
+           'x242','x243','x247']
+reader = pd.read_csv(path,iterator = True)
+df = reader.get_chunk(chunsize)
+df.columns = dfvars(261).split(',')
+df['vericol'] = bool()
+df_fee = df.ix[:,feevars(fee_vars).split(',')]
+df_fee_t = df_fee.T
+df_fee_t.fillna(0,inplace = True)
+df_ttl_sum = df_fee_t.iloc[0,:]
+df_fee_cato = df_fee_t.drop(drop_vars,
+                        axis = 0)
+df_cato_sum = df_fee_cato.sum()
+df.vericol = abs(df_ttl_sum - df_cato_sum) > 0.1
+
+selvar = [1,5,2,31,33,34,35,59,
+            64,69,70,71,72]+range(229,259)+[262]
+selvars = s_selvars(selvar).split(',')
+single_var=['_'+var+'.' for var in selvars]
+df_fee = df.ix[:,self.fee_vars().split(',')]
+fee_vars=range(229,259)
+def feevars(fee_vars):
+        feevars=''
+        for var in fee_vars:
+            feevars+='x%d,' %var
+        feevars=feevars[:len(feevars)-1]
+        return feevars
+feevars(fee_vars)
+
+'''
+>>>>>>> 8522c97044a521a38196db2eaea7436e2e984d21
 
 
 
+        
         
         
