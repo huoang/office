@@ -13,68 +13,21 @@ xfiles = os.listdir(path)
 xfiles.sort()
 xfiles.sort(key=len)
 len(xfiles)
-col229 =  fd.read_dataframe(path+xfiles[12])
-col262 = fd.read_dataframe(path+xfiles[42])
-col229['vericol'] = col262.x262
-col229[col229['vericol'] == 1]
+df229 =  fd.read_dataframe(path+xfiles[12])
+df262 = fd.read_dataframe(path+xfiles[42])
+df262 = df262.set_index('x5')
+df262.x262 = df262.x262.astype('str')
+veri_true = df262.x262.isin(['True'])
+df262[veri_true].index.value_counts()
 
-col229['vericol'] == True
-def colsums(path,xfiles):
-    rlts = list()
-    for xfile in xfiles:
-        col_rep =  fd.read_dataframe(path+xfile)
-        col = col_rep.iloc[:,1]
-        col = col.astype('float')
-        col[col > 410000000000] = 0
-        colsum = col.sum()
-        rlts.append(colsum)
-    return rlts
+#410000001034
+path = '/mnt/e/pyr/data/2015perhos/'
 
-def s_selvars(selvar):
-        dfvars=''
-        for var in selvar:
-            dfvars+='x%d,' %var
-        dfvars=dfvars[:len(dfvars)-1]
-        return dfvars    
-selvar = s_selvars(range(229,259))
+wrong_fee_df = fd.read_dataframe(path+'410000003338_2015.pyr')
 
-colsum = colsums(path,xfiles[12:])
+wrong_fee_df.ix[:,'x235']
 
 
-colsum = pd.Series(colsum)
 
 
-[round(x,2) for x in colsum]
-colsum.index = selvar.split(',')
-colsum2 = colsum.drop(['x229','x230','x240',
-             'x242','x243','x247'])
-colsum2.sum()
-colsum3 = colsum.drop(['x229','x230'])
-colsum3.sum()
-diff = colsum['x229'] - colsum2.sum()
-round(diff,4)
-
-varlist = pd.read_csv('/mnt/e/pyr/data/pyvarlist.csv')
-varlist = varlist.chnnames
-varlist = pd.Series(varlist)
-varlist.index = selvar.split(',')
-
-
-col_rep = fd.read_dataframe(path+xfiles[])
-col = col_rep.iloc[:,1]
-col = col.astype('float')
-len(col[col.isnull()])
-
-col.sum()
-
-col_rep.ix[5288017]
-col_rep[col_rep.x229 == "nan"]
-col = col_rep.x229.astype('float')
-col[col == 0].count()
-rlts.append(0)
-col[col.isnull()]
-col[col == 0]
-
-#c(-1,-2,-12,-14,-15,-19),]
-col.isnull
 

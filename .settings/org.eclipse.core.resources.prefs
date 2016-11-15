@@ -15,4 +15,5 @@ encoding/gethoscode.py=utf-8
 encoding/getrecs.py=utf-8
 encoding/global_list.py=utf-8
 encoding/main.py=utf-8
+encoding/more.py=utf-8
 encoding/vars.py=utf-8
